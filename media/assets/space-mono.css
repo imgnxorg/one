@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "Space Mono";
+  font-display: block;
+  src: url("./space-mono.ttf?v=1") format("truetype");
+}
+
+.space-mono {
+  font-family: "Space Mono", "Fira Code", "Lucida Console", monospace;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

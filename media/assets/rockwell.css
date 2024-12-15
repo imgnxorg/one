@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "Rockwell";
+  font-display: block;
+  src: url("./rockwell.otf?v=1") format("truetype");
+}
+
+.rockwell {
+  font-family: "Rockwell", Georgia, Garamond, Baskerville, serif;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "Olde English";
+  font-display: block;
+  src: url("./media/assets/old-english.ttf?v=3") format("truetype");
+}
+
+.old-english {
+  font-family: "Olde English", "Blackletter", gothic, serif;
+  display: inline-block;
+  text-decoration: none;
+  text-rendering: auto;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

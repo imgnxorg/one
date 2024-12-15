@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>README.md</title>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+  <style>
+    /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+    /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+    body {
+      background-color: #eee;
+      font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+      font-size: var(--vscode-markdown-font-size, 14px);
+      padding: 0 26px;
+      line-height: var(--vscode-markdown-line-height, 22px);
+      word-wrap: break-word;
+    }
+
+    #code-csp-warning {
+      position: fixed;
+      top: 0;
+      right: 0;
+      color: white;
+      margin: 16px;
+      text-align: center;
+      font-size: 12px;
+      font-family: sans-serif;
+      background-color: #444444;
+      cursor: pointer;
+      padding: 6px;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+    }
+
+    #code-csp-warning:hover {
+      text-decoration: none;
+      background-color: #007aee;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+    }
+
+    body.scrollBeyondLastLine {
+      margin-bottom: calc(100vh - 22px);
+    }
+
+    body.showEditorSelection .code-line {
+      position: relative;
+    }
+
+    body.showEditorSelection .code-active-line:before,
+    body.showEditorSelection .code-line:hover:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -12px;
+      height: 100%;
+    }
+
+    body.showEditorSelection li.code-active-line:before,
+    body.showEditorSelection li.code-line:hover:before {
+      left: -30px;
+    }
+
+    .vscode-light.showEditorSelection .code-active-line:before {
+      border-left: 3px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .vscode-light.showEditorSelection .code-line:hover:before {
+      border-left: 3px solid rgba(0, 0, 0, 0.40);
+    }
+
+    .vscode-light.showEditorSelection .code-line .code-line:hover:before {
+      border-left: none;
+    }
+
+    .vscode-dark.showEditorSelection .code-active-line:before {
+      border-left: 3px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .vscode-dark.showEditorSelection .code-line:hover:before {
+      border-left: 3px solid rgba(255, 255, 255, 0.60);
+    }
+
+    .vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+      border-left: none;
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-active-line:before {
+      border-left: 3px solid rgba(255, 160, 0, 0.7);
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-line:hover:before {
+      border-left: 3px solid rgba(255, 160, 0, 1);
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+      border-left: none;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 1px solid -webkit-focus-ring-color;
+      outline-offset: -1px;
+    }
+
+    hr {
+      border: 0;
+      height: 2px;
+      border-bottom: 2px solid;
+    }
+
+    h1 {
+      padding-bottom: 0.3em;
+      line-height: 1.2;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: normal;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    table>thead>tr>th {
+      text-align: left;
+      border-bottom: 1px solid;
+    }
+
+    table>thead>tr>th,
+    table>thead>tr>td,
+    table>tbody>tr>th,
+    table>tbody>tr>td {
+      padding: 5px 10px;
+    }
+
+    table>tbody>tr+tr>td {
+      border-top: 1px solid;
+    }
+
+    blockquote {
+      margin: 0 7px 0 5px;
+      padding: 0 16px 0 10px;
+      border-left-width: 5px;
+      border-left-style: solid;
+    }
+
+    code {
+      font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+      font-size: 1em;
+      line-height: 1.357em;
+    }
+
+    body.wordWrap pre {
+      white-space: pre-wrap;
+    }
+
+    pre:not(.hljs),
+    pre.hljs code>div {
+      padding: 16px;
+      border-radius: 3px;
+      overflow: auto;
+    }
+
+    pre code {
+      color: var(--vscode-editor-foreground);
+      tab-size: 4;
+    }
+
+    /** Theming */
+
+    .vscode-light pre {
+      background-color: rgba(220, 220, 220, 0.4);
+    }
+
+    .vscode-dark pre {
+      background-color: rgba(10, 10, 10, 0.4);
+    }
+
+    .vscode-high-contrast pre {
+      background-color: rgb(0, 0, 0);
+    }
+
+    .vscode-high-contrast h1 {
+      border-color: rgb(0, 0, 0);
+    }
+
+    .vscode-light table>thead>tr>th {
+      border-color: rgba(0, 0, 0, 0.69);
+    }
+
+    .vscode-dark table>thead>tr>th {
+      border-color: rgba(255, 255, 255, 0.69);
+    }
+
+    .vscode-light h1,
+    .vscode-light hr,
+    .vscode-light table>tbody>tr+tr>td {
+      border-color: rgba(0, 0, 0, 0.18);
+    }
+
+    .vscode-dark h1,
+    .vscode-dark hr,
+    .vscode-dark table>tbody>tr+tr>td {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+  </style>
+
+  <style>
+    /* a11y-dark theme */
+    /* Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css */
+    /* @author: ericwbailey */
+
+    /* Comment */
+    .hljs-comment,
+    .hljs-quote {
+      color: #d4d0ab;
+    }
+
+    /* Red */
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-tag,
+    .hljs-name,
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-regexp,
+    .hljs-deletion {
+      color: #ffa07a;
+    }
+
+    /* Orange */
+    .hljs-number,
+    .hljs-built_in,
+    .hljs-builtin-name,
+    .hljs-literal,
+    .hljs-type,
+    .hljs-params,
+    .hljs-meta,
+    .hljs-link {
+      color: #f5ab35;
+    }
+
+    /* Yellow */
+    .hljs-attribute {
+      color: #ffd700;
+    }
+
+    /* Green */
+    .hljs-string,
+    .hljs-symbol,
+    .hljs-bullet,
+    .hljs-addition {
+      color: #abe338;
+    }
+
+    /* Blue */
+    .hljs-title,
+    .hljs-section {
+      color: #00e0e0;
+    }
+
+    /* Purple */
+    .hljs-keyword,
+    .hljs-selector-tag {
+      color: #dcc6e0;
+    }
+
+    .hljs {
+      display: block;
+      overflow-x: auto;
+      background: #2b2b2b;
+      color: #f8f8f2;
+      padding: 0.5em;
+    }
+
+    .hljs-emphasis {
+      font-style: italic;
+    }
+
+    .hljs-strong {
+      font-weight: bold;
+    }
+
+    @media screen and (-ms-high-contrast: active) {
+
+      .hljs-addition,
+      .hljs-attribute,
+      .hljs-built_in,
+      .hljs-builtin-name,
+      .hljs-bullet,
+      .hljs-comment,
+      .hljs-link,
+      .hljs-literal,
+      .hljs-meta,
+      .hljs-number,
+      .hljs-params,
+      .hljs-string,
+      .hljs-symbol,
+      .hljs-type,
+      .hljs-quote {
+        color: highlight;
+      }
+
+      .hljs-keyword,
+      .hljs-selector-tag {
+        font-weight: bold;
+      }
+    }
+  </style>
+
+  <style>
+    /*
+ * Markdown PDF CSS
+ */
+
+    body {
+      font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+      padding: 0 12px;
+    }
+
+    pre {
+      background-color: #f8f8f8;
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+    }
+
+    pre:not(.hljs) {
+      padding: 23px;
+      line-height: 19px;
+    }
+
+    blockquote {
+      background: rgba(127, 127, 127, 0.1);
+      border-color: rgba(0, 122, 204, 0.5);
+    }
+
+    .emoji {
+      height: 1.4em;
+    }
+
+    code {
+      font-size: 14px;
+      line-height: 19px;
+    }
+
+    /* for inline code */
+    :not(pre):not(.hljs)>code {
+      color: #C9AE75;
+      /* Change the old color so it seems less like an error */
+      font-size: inherit;
+    }
+
+    /* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+    .page {
+      page-break-after: always;
+    }
+  </style>
+
+  <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    canvas#demo {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+  <style>
+    .column {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: start;
+      flex-direction: column;
+      display: block;
+      max-width: 65ch;
+      margin: auto;
+      font-family: 'Noto Sans';
+      font-size: 1rem;
+      margin: 10px 30px;
+    }
+
+    .container {
+      margin: auto;
+      padding-left: 7ch;
+      padding-right: 7ch;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+    }
+
+    .container>* {
+      max-width: 65ch;
+      margin: auto;
+    }
+
+    pre,
+    code,
+    kbd,
+    .mono,
+    .monospace {
+      font-family: "Space Mono", "Fira Code", "Lucida Console", monospace;
+    }
+
+    s h1 {
+      font-size: 4rem;
+    }
+
+    .debug,
+    .debug * {
+      border: 1px solid #0080ff99;
+    }
+
+    body>* {}
+
+    .debug,
+    .debug *:nth-child(even) {
+      border: 1px solid #ff800099
+    }
+
+    @media (prefers-color-scheme: light) {
+
+      h1,
+      h2,
+      i,
+      b,
+      em,
+      strong {
+        color: #202020;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+
+      h1,
+      h2,
+      b,
+      i,
+      em,
+      strong {
+        color: linen;
+      }
+    }
+
+    #demo {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+
+    #wrapper {
+      margin: auto;
+    }
+
+    .absolute {
+      position: absolute;
+    }
+
+    .sidebar {
+      position: fixed;
+      max-width: 1536px;
+    }
+
+    #sidebar-1 {
+      inset: 0;
+      z-index: 20;
+      right: 75%;
+      background-color: rgba(255, 255, 255, 0.5);
+      position: fixed;
+      height: 100vh;
+      border-left: 4px solid #202020;
+      border-right: 4px solid #202020;
+    }
+
+    #sidebar-2 {
+      inset: 0;
+      z-index: 20;
+      left: 75%;
+      background-color: rgba(255, 255, 255, 0.5);
+      position: fixed;
+      height: 100vh;
+      border-left: 4px solid #202020;
+      border-right: 4px solid #202020;
+    }
+  </style>
+</head>
+
+<body style="padding: 0" class="noto-sans vscode-light debug">
+  <div id="sidebar-1" class="sidebar">
+
+  </div>
+  <div id="sidebar-2" class=".idebar">
+    2
+  </div>
+  <canvas id="demo"></canvas>
+  <div class="absolute"
+    style="z-index: inherit; inset: 0; background-image: radial-gradient(circle, #ffffff 0%, transparent 100%);">
+
+  </div>
+  <div id="wrapper" class="">
+
+
+    <script>
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'base',
+        themeVariables: {
+          // Background and overall styling
+          background: '#eee',
+          primaryColor: '#007aee', // Node background
+          primaryTextColor: '#444444', // Node text color
+          primaryBorderColor: '#444444', // Node border color
+
+          // Secondary nodes
+          secondaryColor: '#d4d0ab',
+          secondaryTextColor: '#444444',
+          secondaryBorderColor: '#d4d0ab',
+
+          // Tertiary nodes
+          tertiaryColor: '#ffa07a',
+          tertiaryTextColor: '#444444',
+          tertiaryBorderColor: '#ffa07a',
+
+          // Edge (line) styling
+          lineColor: '#007aee',
+
+          // Colors for node groups or clusters
+          clusterBkg: '#d4d0ab',
+          clusterBorder: '#444444',
+
+          // Font styles
+          fontFamily: 'Arial, sans-serif',
+          fontSize: '16px',
+          nodeTextColor: '#444444',
+
+          // Specific node and text colors
+          textColor: '#444444',
+          labelColor: '#444444',
+          titleColor: '#007aee',
+
+          // Additional colors for diagrams like Gantt
+          taskTextColor: '#444444',
+          activeTaskColor: '#ffa07a',
+          taskBorderColor: '#d4d0ab',
+
+          // Misc colors
+          darkModeText: '#eeeeee',
+          lightModeText: '#444444',
+
+          // Other elements
+          nodeBkg: '#007aee',
+          altBackground: '#f8f8f2',
+        },
+      });
+    </script>
+
+
+    <link rel="stylesheet" href="./media/assets/noto-sans.css?v=4">
+    <link rel="stylesheet" href="./media/assets/dm-sans.css?v=4">
+    <link rel="stylesheet" href="./media/assets/codicon.css?v=4">
+    <link rel="stylesheet" href="./media/assets/another-tag.css?v=2">
+    <link rel="stylesheet" href="./media/assets/acquire.css">
+    <link rel="stylesheet" href="./media/assets/dm-serif-display.css">
+
+
+
+
+    <div class="container"
+      style="display: grid; gap: 25px; grid-template-columns: 1fr; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+
+      <pre style="background: unset; border: unset; padding: unset; margin: unset;">43</pre>
+      <h1 id="imgnx-0ne" class="another-tag"
+        style="z-index: 10; border-bottom-color: transparent !important; margin-bottom: 3rem; padding-top: 80px; width: 100%; text-align: center; -webkit-text-stroke: 8px black; font-size: 24rem; font-weight: 100; line-height: 0; margin-bottom: -5px; margin-top: 100px; background-image: linear-gradient(to top, transparent 0%, transparent 50%, white 100%), linear-gradient(to right, #3E9B4F 0%, #3358D4 50%, #C2298A 100%); display: inline-block; color: transparent; background-clip: text; letter-spacing: .1ch;">
+        ONE</h1>
+      <p class="dm-sans"
+        style="position: relative; font-size: 3rem; font-weight: 700; position: relative; display: inline-block; padding-bottom: 21px; width: 100%; z-index: 20; text-align: center; margin: auto; line-height: 0.5; white-space: nowrap;">
+        <span class="acquire"
+          style="display: block; color: #000000ff; position: relative; z-index: 5; mix-blend-mode: hard-light;  letter-spacing: 8.4px; font-size: 6.05rem; line-height: 0; text-shadow: 0 0 17.5px rgba(0, 0, 0, .2);">Imgnxtion</span>
+      <div style="position: relative; padding-bottom: 120px;">
+        <div
+          style="padding-bottom: 40px; display: flex; align-items: center; box-shadow: 0 0 20px rgba(0, 0, 0, 1); justify-content: center;position: absolute;background: black; min-height: 48px; height: 48px; width: 100%; max-width: 65ch; top: 0; display: flex; align-items: center; justify-content: center;">
+          <span
+            style="display: block; text-shadow: 0 0 80px rgba(255, 255, 255, .865); position: absolute; filter: invert(1); mix-blend-mode: hard-light; font-size: 6rem; line-height: 69px; font-size: 8.4rem; text-align: center;"
+            class="acquire">Unleashed</span>
+        </div>
+      </div>
+      <div class="" style="position: relative;">
+
+        <button
+          style="top: 5px; right: 15px; min-width: 4rem; min-height: 4rem; position: absolute; z-index: 30; background: #007bff; border-radius: 50px; display: flex; align-items: center; justify-content: center; color: white;"
+          onclick='const audio = new Audio("./media/assets/group.mp3"); audio.play();'>
+          <span class="codicon codicon-unmute" style="font-size: 2.75rem;"></span>
+        </button>
+        <blockquote
+          style='position: absolute; inset: 0; max-width: 100%; left: 0; overflow: clip; z-index: 1; padding: 0; border-left-width: 0px; width: 100%; margin: 0; overflow: clip;'>
+          <div
+            style='position: absolute; z-index: 4;background-image: linear-gradient(to bottom right, #6394A6 0%, #8863A6 100%);   mix-blend-mode: hard-light; box-shadow: 0px 0px 5000px 0px rgba(0,0,0,0.5) inset; filter: saturate(2) brightness(1.25) contrast(1.25); transform: translate3d(-0.42ch, -0.84ch, -1.26ch);' />
+          <div
+            style='position: absolute; z-index: 2; background-image: url("./media/assets/yellow.png"); background-size: cover; background-position: -252px 21px; transform: rotate3d(1.042, 1.084, 1.126, 16.8deg); filter: saturate(0.5) brightness(1) contrast(1.25);' />
+        </blockquote>
+        <div class="">
+          <blockquote
+            style="padding: 2.5ch 2.5ch; max-width: 65ch; position: relative; margin: auto; position: relative; z-index: 10; border: 0; overflow: clip;">
+            <h2><a href="https://www.dictionary.com/browse/group#american-group-noun">Group</a></h2><sup>/ɡro͞op/</sup>
+            <p>
+              <b>noun</b>
+            <p>noun: <b>group</b>; plural noun: <b>groups</b></p>
+            <p>a number of people or things that are located close together or are considered or classed together.</p>
+            <p><small>&quot;these bodies fall into four distinct groups&quot;</small></p>
+            <p><i><b>Similar:</b></i></p>
+            <p><span style="text-decoration: none;"><b><a
+                    href="https://www.thesaurus.com/browse/group">category,</a></b>
+                <a href="https://www.thesaurus.com/browse/group">class</a>, <a
+                  href="https://www.thesaurus.com/browse/group">classification</a>, <a
+                  href="https://www.thesaurus.com/browse/group">grouping</a>, <a
+                  href="https://www.thesaurus.com/browse/group">set</a>, <a
+                  href="https://www.thesaurus.com/browse/group">lot</a>, <a
+                  href="https://www.thesaurus.com/browse/group">batch</a>, <a
+                  href="https://www.thesaurus.com/browse/group">bracket</a>, <a
+                  href="https://www.thesaurus.com/browse/group">type</a>, <a
+                  href="https://www.thesaurus.com/browse/group">sort</a>, <a
+                  href="https://www.thesaurus.com/browse/group">kind</a>, <a
+                  href="https://www.thesaurus.com/browse/group">variety</a>, <a
+                  href="https://www.thesaurus.com/browse/group">family</a>, <a
+                  href="https://www.thesaurus.com/browse/group">species</a>, <a
+                  href="https://www.thesaurus.com/browse/group">genus</a>, <a
+                  href="https://www.thesaurus.com/browse/group">breed</a>, <a
+                  href="https://www.thesaurus.com/browse/group">style</a>, <a
+                  href="https://www.thesaurus.com/browse/group">grade</a>, <a
+                  href="https://www.thesaurus.com/browse/group">grading</a>, <a
+                  href="https://www.thesaurus.com/browse/group">rank</a>, <a
+                  href="https://www.thesaurus.com/browse/group">status</a>, <a
+                  href="https://www.thesaurus.com/browse/group">crowd</a>, <a
+                  href="https://www.thesaurus.com/browse/group">band</a>, <a
+                  href="https://www.thesaurus.com/browse/group">company</a>, <a
+                  href="https://www.thesaurus.com/browse/group">party</a>, <a
+                  href="https://www.thesaurus.com/browse/group">body</a>, <a
+                  href="https://www.thesaurus.com/browse/group">gathering</a>, <a
+                  href="https://www.thesaurus.com/browse/group">congregation</a>, <a
+                  href="https://www.thesaurus.com/browse/group">assembly</a>, <a
+                  href="https://www.thesaurus.com/browse/group">collection</a>, <a
+                  href="https://www.thesaurus.com/browse/group">cluster</a>, <a
+                  href="https://www.thesaurus.com/browse/group">flock</a>, <a
+                  href="https://www.thesaurus.com/browse/group">pack</a>, <a
+                  href="https://www.thesaurus.com/browse/group">troop</a>, <a
+                  href="https://www.thesaurus.com/browse/group">gang</a>, <a
+                  href="https://www.thesaurus.com/browse/group">bunch</a></span></p>
+            </p>
+          </blockquote>
+
+        </div>
+
+
+      </div>
+    </div>
+    <br />
+    <hr />
+    <br />
+    <div class="container" style="display: grid; gap: 25px; grid-template-columns: 1fr 1fr;">
+      <div class="column">
+
+        <p>The letter <i>&quot;<b>G</b>&quot;</i> stands for <i>&quot;<b>G</b>roup&quot;</i>. It applies to things like
+          a
+          &quot;group&quot; of tabs, a list of files, a &quot;directory&quot;, a &quot;folder&quot;, a
+          &quot;table&quot;,
+          a
+          <i>&quot;<b>G</b>rid&quot;</i> (if you will...) a spreadsheet, etc. It's essentially a list of things that
+          have
+          some
+          common trait.
+        </p>
+        <p>You will often see the key <kbd>CTRL</kbd> associated with <em><strong>G</strong>roups</em>.</p>
+        <br />
+        <h2 id="ie">ie.</h2>
+        <div class="" style="display: grid; gap: 25px; grid-template-columns: 1.25fr 2fr;">
+          <div style="position: relative; display: flex; justify-content: center; align-items: center;">
+            <p>
+              <kbd
+                style="display: flex; align-items: baseline; max-width: max-content; padding: 20px; padding-top: 10px; padding-bottom: 10px; border-radius: 10px; line-height: 0; white-space: nowrap; float: left; border: 4px solid black;">cmd
+                + <span style="margin: 8px; font-size: 1.25rem; line-height: 0;"><b>ctrl</b></span> + o</kbd>
+            </p>
+          </div>
+          <div>
+            <h4>Move a <b>Group of Editors</b> into a new window.</h4>
+            <div style="word-break: break-all; hyphens: auto;">Since the Group is moved using <code>CTRL</code>
+              <i>(fast)</i>
+              or <code>G</code> <b>(slow)</b>, the Individual is moved using <code>ALT</code> <i>(fast)</i> or
+              <code>I</code>
+              <b>(slow)</b>.
+            </div>
+          </div>
+          <div style="position: relative; display: flex; justify-content: center; align-items: center;">
+            <p><kbd
+                style="display: flex; align-items: baseline; max-width: max-content; padding: 20px; padding-top: 10px; padding-bottom: 10px; border-radius: 10px; line-height: 0; float: left; border: 4px solid black;">cmd
+                + <span style="margin: 8px; font-size: 1.25rem; line-height: 0;"><b>alt</b></span> + o</kbd></p>
+          </div>
+          <div>
+            <h4>Move an <b>Individual Editor</b> into a new window.</h4>
+            <div style="word-break: break-all; hyphens: auto;">Since the Individual is moved using <code>ALT</code>
+              <i>(fast)</i> or <code>I</code> <b>(slow)</b>, the Group is moved using <code>CTRL</code> <i>(fast)</i> or
+              <code>G</code> <b>(slow)</b>.
+            </div>
+          </div>
+        </div>
+        <br />
+        <hr />
+        <br />
+        <h2 id="shortcuts-taxonomy">Shortcuts: Taxonomy</h2>
+        <strong>Groups</strong>
+        <br />
+        <sup>Groups of Panels</sup>
+        </p>
+        <legend style="display: block; display: grid; grid-template-columns:1fr 1fr;">
+
+          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
+              class="space-mono"
+              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
+              +
+              ctrl + <span class="codicon codicon-triangle-up"></span></kbd><br /><b style="margin-top: -4px;">Move
+              Group Up</b></p>
+          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
+              class="space-mono"
+              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
+              +
+              ctrl + <span class="codicon codicon-triangle-right"></span></kbd><br /><b style="margin-top: -4px;">Move
+              Group Right</b>
+          </p>
+          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
+              class="space-mono"
+              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
+              +
+              ctrl + <span class="codicon codicon-triangle-down"></span></kbd><br /><b style="margin-top: -4px;">Move
+              Group Down</b></p>
+          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
+              class="space-mono"
+              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
+              +
+              ctrl + <span class="codicon codicon-triangle-left"></span></kbd><br /><b style="margin-top: -4px;">Move
+              Group Left</b></p>
+        </legend>
+
+        <script src="./out/stripe-gradient.js"></script>
+        <script>
+          (function () {
+            'use strict';
+
+            new Gradient({
+              canvas: 'canvas#demo',
+              colors: ['#a960ee', '#ff333d', '#90e0ff', '#ffcb57']
+            });
+
+          })();
+        </script>
+      </div>
+      <div class="column">
+        <p><strong>Panels</strong>
+          <br /><sup>Individual Panes</sup>
+        </p>
+        <legend style="display: block; display: grid; grid-template-columns:1fr 1fr;">
+
+          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
+              class="space-mono"
+              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
+              +
+              alt + <span class="codicon codicon-triangle-up"></span></kbd><br /><b style="margin-top: -4px;">Move
+              Panel Up</b></p>
+          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
+              class="space-mono"
+              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
+              +
+              alt + <span class="codicon codicon-triangle-right"></span></kbd><br /><b style="margin-top: -4px;">Move
+              Panel Right</b>
+          </p>
+          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
+              class="space-mono"
+              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
+              +
+              alt + <span class="codicon codicon-triangle-down"></span></kbd><br /><b style="margin-top: -4px;">Move
+              Panel Down</b></p>
+          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
+              class="space-mono"
+              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
+              +
+              alt + <span class="codicon codicon-triangle-left"></span></kbd><br /><b style="margin-top: -4px;">Move
+              Panel Left</b></p>
+        </legend>
+        <p><kbd>⌘ + 0</kbd> — Layout</p>
+        <ul>
+          <li><kbd>⌘ + 1</kbd> — Primary Sidebar
+            <ul>
+              <li><kbd>⌘ + ❰</kbd></li>
+            </ul>
+          </li>
+          <li><kbd>⌘ + 2</kbd> — Focus Editor/Toggle Panel</li>
+          <li><kbd>⌘ + 3</kbd> — Search</li>
+          <li><kbd>⌘ + 5</kbd> — Accessibility</li>
+          <li><kbd>⌘ + ]</kbd> / <kbd>⌘ + [</kbd> — Add/Remove Integrated Terminal</li>
+          <li><kbd>⌘ + K</kbd> — Previews</li>
+          <li><kbd>⌘ + N</kbd> — NPM</li>
+          <li><kbd>⌘ + T</kbd> D — Takku (Difftool) / Terminal</li>
+          <li><kbd>⌘ + L</kbd> — Lookup (Symbol)</li>
+        </ul>
+        <div><kbd>ctrl</kbd> is usually reserved for Grids</div>
+        <div><kbd>alt</kbd> is usually reserved for Individual Panes</div>
+
+        <div class="mermaid" style="display: flex; justify-content: center; margin: 20px">
+          erDiagram
+          CUSTOMER {
+          string id PK
+          string name
+          string email
+          string phone
+          }
+          ORDER {
+          string id PK
+          string orderDate
+          string status
+          }
+          PRODUCT {
+          string id PK
+          string name
+          float price
+          }
+          ORDER_PRODUCT {
+          string orderId FK
+          string productId FK
+          int quantity
+          }
+          CUSTOMER ||--o{ ORDER : places
+          ORDER ||--o{ ORDER_PRODUCT : contains
+          PRODUCT ||--o{ ORDER_PRODUCT : listed_in
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

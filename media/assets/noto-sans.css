@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "Noto Sans";
+  font-display: block;
+  src: url("./noto-sans.ttf?v=1") format("truetype");
+}
+
+.noto-sans {
+  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "Another Tag";
+  font-display: block;
+  src: url("./aAnotherTag.ttf?v=1") format("truetype");
+}
+
+.another-tag {
+  font-family: "Another Tag", Georgia, Garamond, Baskerville, serif;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

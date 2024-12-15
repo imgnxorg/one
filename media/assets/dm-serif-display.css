@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "DM Serif Display";
+  font-display: block;
+  src: url("./dm-serif-display.ttf?v=1") format("truetype");
+}
+
+.dm-serif-display {
+  font-family: "DM Serif Display", Georgia, Garamond, Baskerville, serif;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "Acquire";
+  font-display: block;
+  src: url("./acquire-bold.otf?v=1") format("truetype");
+}
+
+.acquire {
+  font-family: "Acquire", Georgia, Garamond, Baskerville, serif;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
