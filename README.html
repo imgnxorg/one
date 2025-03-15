@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
   <title>README.md</title>
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 
   <style>
     /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
@@ -14,7 +14,14 @@
 
     body {
       background-color: #eee;
-      font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+      font-family: var(--vscode-markdown-font-family,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe WPC",
+          "Segoe UI",
+          "Ubuntu",
+          "Droid Sans",
+          sans-serif);
       font-size: var(--vscode-markdown-font-size, 14px);
       padding: 0 26px;
       line-height: var(--vscode-markdown-line-height, 22px);
@@ -33,13 +40,13 @@
       background-color: #444444;
       cursor: pointer;
       padding: 6px;
-      box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
     }
 
     #code-csp-warning:hover {
       text-decoration: none;
       background-color: #007aee;
-      box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
     }
 
     body.scrollBeyondLastLine {
@@ -70,7 +77,7 @@
     }
 
     .vscode-light.showEditorSelection .code-line:hover:before {
-      border-left: 3px solid rgba(0, 0, 0, 0.40);
+      border-left: 3px solid rgba(0, 0, 0, 0.4);
     }
 
     .vscode-light.showEditorSelection .code-line .code-line:hover:before {
@@ -82,7 +89,7 @@
     }
 
     .vscode-dark.showEditorSelection .code-line:hover:before {
-      border-left: 3px solid rgba(255, 255, 255, 0.60);
+      border-left: 3px solid rgba(255, 255, 255, 0.6);
     }
 
     .vscode-dark.showEditorSelection .code-line .code-line:hover:before {
@@ -169,7 +176,8 @@
     }
 
     code {
-      font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+      font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New",
+        monospace, "Droid Sans Fallback";
       font-size: 1em;
       line-height: 1.357em;
     }
@@ -338,7 +346,16 @@
  */
 
     body {
-      font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+      font-family:
+        "Noto Sans",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe WPC",
+        "Segoe UI",
+        "Ubuntu",
+        "Droid Sans",
+        sans-serif,
+        "Meiryo";
       padding: 0 12px;
     }
 
@@ -349,6 +366,11 @@
       overflow-x: auto;
       white-space: pre-wrap;
       overflow-wrap: break-word;
+    }
+
+    kbd {
+      border-radius: 10px;
+      border: 1px solid #888888;
     }
 
     pre:not(.hljs) {
@@ -372,7 +394,7 @@
 
     /* for inline code */
     :not(pre):not(.hljs)>code {
-      color: #C9AE75;
+      color: #c9ae75;
       /* Change the old color so it seems less like an error */
       font-size: inherit;
     }
@@ -391,9 +413,12 @@
     body {
       padding: 0;
       margin: 0;
+      overscroll-behavior: contain;
     }
 
     canvas#demo {
+      position: fixed;
+      inset: 0;
       width: 100vw;
       height: 100vh;
     }
@@ -408,13 +433,14 @@
       display: block;
       max-width: 65ch;
       margin: auto;
-      font-family: 'Noto Sans';
+      font-family: "Noto Sans";
       font-size: 1rem;
       margin: 10px 30px;
     }
 
     .container {
       margin: auto;
+      max-width: 1440px;
       padding-left: 7ch;
       padding-right: 7ch;
       padding-top: 2rem;
@@ -447,11 +473,9 @@
       border: 1px solid #0080ff99;
     }
 
-    body>* {}
-
     .debug,
     .debug *:nth-child(even) {
-      border: 1px solid #ff800099
+      border: 1px solid #ff800099;
     }
 
     @media (prefers-color-scheme: light) {
@@ -511,362 +535,900 @@
     #sidebar-2 {
       inset: 0;
       z-index: 20;
-      left: 75%;
+      left: 100%;
       background-color: rgba(255, 255, 255, 0.5);
       position: fixed;
       height: 100vh;
       border-left: 4px solid #202020;
       border-right: 4px solid #202020;
     }
+
+    .handle {
+      cursor: ew-resize;
+    }
   </style>
-</head>
 
-<body style="padding: 0" class="noto-sans vscode-light debug">
-  <div id="sidebar-1" class="sidebar">
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-  </div>
-  <div id="sidebar-2" class=".idebar">
-    2
-  </div>
-  <canvas id="demo"></canvas>
-  <div class="absolute"
-    style="z-index: inherit; inset: 0; background-image: radial-gradient(circle, #ffffff 0%, transparent 100%);">
-
-  </div>
-  <div id="wrapper" class="">
-
-
-    <script>
       mermaid.initialize({
-        startOnLoad: true,
-        theme: 'base',
-        themeVariables: {
-          // Background and overall styling
+        startOnLoad: true, theme: 'base', themeVariables: {
+          // Background and overall styling 
           background: '#eee',
-          primaryColor: '#007aee', // Node background
-          primaryTextColor: '#444444', // Node text color
-          primaryBorderColor: '#444444', // Node border color
+          primaryColor: '#007aee', // Node background 
+          primaryTextColor: '#444444', // Node text
+          // color 
+          primaryBorderColor: '#444444', // Node border color // Secondary
 
-          // Secondary nodes
           secondaryColor: '#d4d0ab',
           secondaryTextColor: '#444444',
-          secondaryBorderColor: '#d4d0ab',
-
-          // Tertiary nodes
+          secondaryBorderColor: '#d4d0ab', // Tertiary nodes 
           tertiaryColor: '#ffa07a',
           tertiaryTextColor: '#444444',
-          tertiaryBorderColor: '#ffa07a',
-
-          // Edge (line) styling
-          lineColor: '#007aee',
-
-          // Colors for node groups or clusters
+          tertiaryBorderColor: '#ffa07a',  // Edge (line) styling 
+          lineColor: '#007aee', // Colors for node groups or clusters 
           clusterBkg: '#d4d0ab',
-          clusterBorder: '#444444',
-
-          // Font styles
+          clusterBorder: '#444444', // Font styles
           fontFamily: 'Arial, sans-serif',
           fontSize: '16px',
-          nodeTextColor: '#444444',
-
-          // Specific node and text colors
+          nodeTextColor:
+            '#444444', // Specific node and text colors 
           textColor: '#444444',
           labelColor: '#444444',
-          titleColor: '#007aee',
-
-          // Additional colors for diagrams like Gantt
+          titleColor: '#007aee', // Additional colors for diagrams like Gantt 
           taskTextColor: '#444444',
           activeTaskColor: '#ffa07a',
-          taskBorderColor: '#d4d0ab',
-
-          // Misc colors
+          taskBorderColor: '#d4d0ab', // Misc colors 
           darkModeText: '#eeeeee',
-          lightModeText: '#444444',
-
-          // Other elements
+          lightModeText: '#444444', // Other elements 
           nodeBkg: '#007aee',
           altBackground: '#f8f8f2',
         },
       });
-    </script>
 
+      const handle1 = document.querySelector("#sidebar-1 .handle");
+      const handle2 = document.querySelector("#sidebar-2 .handle");
 
-    <link rel="stylesheet" href="./media/assets/noto-sans.css?v=4">
-    <link rel="stylesheet" href="./media/assets/dm-sans.css?v=4">
-    <link rel="stylesheet" href="./media/assets/codicon.css?v=4">
-    <link rel="stylesheet" href="./media/assets/another-tag.css?v=2">
-    <link rel="stylesheet" href="./media/assets/acquire.css">
-    <link rel="stylesheet" href="./media/assets/dm-serif-display.css">
+      function onDrag({ movementX }) {
+        const sidebar1 = document.getElementById("sidebar-1");
+        const sidebar2 = document.getElementById("sidebar-2");
+        const sidebar1Width = sidebar1.offsetWidth;
+        const sidebar2Width = sidebar2.offsetWidth;
 
+        sidebar1.style.transform = `translateX(${sidebar1Width + movementX}px)`;
+        sidebar2.style.transform = `translateX(${sidebar2Width - movementX}px)`;
+      }
 
+      function onMouseDown(e) {
+        e.preventDefault();
+        document.addEventListener("mousemove", onDrag);
+        document.addEventListener(
+          "mouseup",
+          () => {
+            document.removeEventListener("mousemove", onDrag);
+          },
+          { once: true },
+        );
+      }
 
+      function onTouchStart(e) {
+        e.preventDefault();
+        document.addEventListener("touchmove", onDrag);
+        document.addEventListener(
+          "touchend",
+          () => {
+            document.removeEventListener("touchmove", onDrag);
+          },
+          { once: true },
+        );
+      }
 
-    <div class="container"
-      style="display: grid; gap: 25px; grid-template-columns: 1fr; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      handle1.addEventListener("mousedown", onMouseDown);
+      handle1.addEventListener("touchstart", onTouchStart);
+      handle2.addEventListener("mousedown", onMouseDown);
+      handle2.addEventListener("touchstart", onTouchStart);
+    });
+  </script>
+</head>
 
-      <pre style="background: unset; border: unset; padding: unset; margin: unset;">43</pre>
-      <h1 id="imgnx-0ne" class="another-tag"
-        style="z-index: 10; border-bottom-color: transparent !important; margin-bottom: 3rem; padding-top: 80px; width: 100%; text-align: center; -webkit-text-stroke: 8px black; font-size: 24rem; font-weight: 100; line-height: 0; margin-bottom: -5px; margin-top: 100px; background-image: linear-gradient(to top, transparent 0%, transparent 50%, white 100%), linear-gradient(to right, #3E9B4F 0%, #3358D4 50%, #C2298A 100%); display: inline-block; color: transparent; background-clip: text; letter-spacing: .1ch;">
-        ONE</h1>
-      <p class="dm-sans"
-        style="position: relative; font-size: 3rem; font-weight: 700; position: relative; display: inline-block; padding-bottom: 21px; width: 100%; z-index: 20; text-align: center; margin: auto; line-height: 0.5; white-space: nowrap;">
-        <span class="acquire"
-          style="display: block; color: #000000ff; position: relative; z-index: 5; mix-blend-mode: hard-light;  letter-spacing: 8.4px; font-size: 6.05rem; line-height: 0; text-shadow: 0 0 17.5px rgba(0, 0, 0, .2);">Imgnxtion</span>
-      <div style="position: relative; padding-bottom: 120px;">
-        <div
-          style="padding-bottom: 40px; display: flex; align-items: center; box-shadow: 0 0 20px rgba(0, 0, 0, 1); justify-content: center;position: absolute;background: black; min-height: 48px; height: 48px; width: 100%; max-width: 65ch; top: 0; display: flex; align-items: center; justify-content: center;">
-          <span
-            style="display: block; text-shadow: 0 0 80px rgba(255, 255, 255, .865); position: absolute; filter: invert(1); mix-blend-mode: hard-light; font-size: 6rem; line-height: 69px; font-size: 8.4rem; text-align: center;"
-            class="acquire">Unleashed</span>
+<body style="padding: 0" class="noto-sans vscode-light">
+  <div id="sidebar-1" class="sidebar">
+    <div class="handle" style="
+          position: absolute;
+          left: 100%;
+          height: 100%;
+          width: 1vw;
+          max-width: 10px;
+          background-color: black;
+        ">
+      1
+    </div>
+  </div>
+  <div id="sidebar-2" class="sidebar">
+    <div class="handle" on style="
+          position: absolute;
+          right: 100%;
+          height: 100%;
+          width: 1vw;
+          max-width: 10px;
+          background-color: black;
+        ">
+      2
+    </div>
+  </div>
+  <canvas id="demo">
+    <div class="absolute" style="
+        z-index: inherit;
+        inset: 0;
+        background-image: radial-gradient(circle, #ffffff00 0%, #dfdfdf00 5%, transparent 100%), radial-gradient(circle, #000000 0%, #202020 5%, transparent 100%);
+      "></div>
+  </canvas>
+  <div id="wrapper" class="">
+    <link rel="stylesheet" href="./media/assets/noto-sans.css?v=4" />
+    <link rel="stylesheet" href="./media/assets/dm-sans.css?v=4" />
+    <link rel="stylesheet" href="./media/assets/codicon.css?v=4" />
+    <link rel="stylesheet" href="./media/assets/another-tag.css?v=2" />
+    <link rel="stylesheet" href="./media/assets/acquire.css" />
+    <link rel="stylesheet" href="./media/assets/dm-serif-display.css" />
+
+    <div class="container" style="
+          display: grid;
+          padding-left: 125px;
+          padding-right: 125px;
+          gap: 25px;
+          grid-template-columns: 1fr;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        ">
+      <pre style="
+            background: unset;
+            border: unset;
+            padding: unset;
+            margin: unset;
+          ">
+43</pre>
+      <h1 id="imgnx-0ne" class="another-tag" style="
+            z-index: 10;
+            border-bottom-color: transparent !important;
+            margin-bottom: 3rem;
+            padding-top: 80px;
+            width: 100%;
+            text-align: center;
+            -webkit-text-stroke: 8px black;
+            font-size: 24rem;
+            font-weight: 100;
+            line-height: 0;
+            margin-bottom: -5px;
+            margin-top: 100px;
+            background-image: linear-gradient(
+                to top,
+                transparent 0%,
+                transparent 50%,
+                white 100%
+              ),
+              linear-gradient(to right, #3e9b4f 0%, #3358d4 50%, #c2298a 100%);
+            display: inline-block;
+            color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1ch;
+          ">
+        ONE
+      </h1>
+      <p class="dm-sans" style="
+            position: relative;
+            font-size: 3rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 21px;
+            width: 100%;
+            z-index: 20;
+            text-align: center;
+            margin: auto;
+            line-height: 0.5;
+            white-space: nowrap;
+          ">
+        <span class="acquire" style="
+              display: block;
+              color: #000000ff;
+              position: relative;
+              z-index: 5;
+              mix-blend-mode: hard-light;
+              letter-spacing: 8.4px;
+              font-size: 6.05rem;
+              line-height: 0;
+              text-shadow: 0 0 17.5px rgba(0, 0, 0, 0.2);
+            ">Imgnxtion</span>
+      </p>
+
+      <div style="position: relative; padding-bottom: 120px">
+        <div style="
+              padding-bottom: 40px;
+              display: flex;
+              align-items: center;
+              box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+              justify-content: center;
+              position: absolute;
+              background: black;
+              min-height: 48px;
+              height: 48px;
+              width: 100%;
+              max-width: 65ch;
+              top: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            ">
+          <span style="
+                display: block;
+                text-shadow: 0 0 200px rgba(255, 255, 255, 0.999);
+                position: absolute;
+                filter: invert(1);
+                mix-blend-mode: hard-light;
+                font-size: 6rem;
+                line-height: 69px;
+                font-size: 8.4rem;
+                text-align: center;
+              " class="acquire">Unleashed</span>
         </div>
       </div>
-      <div class="" style="position: relative;">
 
-        <button
-          style="top: 5px; right: 15px; min-width: 4rem; min-height: 4rem; position: absolute; z-index: 30; background: #007bff; border-radius: 50px; display: flex; align-items: center; justify-content: center; color: white;"
-          onclick='const audio = new Audio("./media/assets/group.mp3"); audio.play();'>
-          <span class="codicon codicon-unmute" style="font-size: 2.75rem;"></span>
+      <div class="" style="position: relative">
+        <button style="
+              top: 15px;
+              right: 15px;
+              min-width: 4rem;
+              min-height: 4rem;
+              position: absolute;
+              z-index: 30;
+              background: #007bff;
+              border-radius: 50px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+            " onclick='const audio = new Audio("./media/assets/group.mp3"); audio.play();'>
+          <span class="codicon codicon-unmute" style="font-size: 2.75rem"></span>
         </button>
-        <blockquote
-          style='position: absolute; inset: 0; max-width: 100%; left: 0; overflow: clip; z-index: 1; padding: 0; border-left-width: 0px; width: 100%; margin: 0; overflow: clip;'>
-          <div
-            style='position: absolute; z-index: 4;background-image: linear-gradient(to bottom right, #6394A6 0%, #8863A6 100%);   mix-blend-mode: hard-light; box-shadow: 0px 0px 5000px 0px rgba(0,0,0,0.5) inset; filter: saturate(2) brightness(1.25) contrast(1.25); transform: translate3d(-0.42ch, -0.84ch, -1.26ch);' />
-          <div
-            style='position: absolute; z-index: 2; background-image: url("./media/assets/yellow.png"); background-size: cover; background-position: -252px 21px; transform: rotate3d(1.042, 1.084, 1.126, 16.8deg); filter: saturate(0.5) brightness(1) contrast(1.25);' />
+        <blockquote style="
+              position: absolute;
+              inset: 0;
+              max-width: 100%;
+              left: 0;
+              overflow: clip;
+              z-index: 1;
+              padding: 0;
+              border-left-width: 0px;
+              width: 100%;
+              margin: 0;
+              overflow: clip;
+            ">
+          <div style="
+                position: absolute;
+                z-index: 4;
+                background-image: linear-gradient(
+                  to bottom right,
+                  #6394a6 0%,
+                  #8863a6 100%
+                );
+                mix-blend-mode: hard-light;
+                box-shadow: 0px 0px 5000px 0px rgba(0, 0, 0, 0.5) inset;
+                filter: saturate(2) brightness(1.25) contrast(1.25);
+                transform: translate3d(-0.42ch, -0.84ch, -1.26ch);
+              " />
+          <div style="
+                position: absolute;
+                z-index: 2;
+                background-image: url(&quot;./media/assets/yellow.png&quot;);
+                background-size: cover;
+                background-position: -252px 21px;
+                transform: rotate3d(1.042, 1.084, 1.126, 16.8deg);
+                filter: saturate(0.5) brightness(1) contrast(1.25);
+              " />
         </blockquote>
-        <div class="">
-          <blockquote
-            style="padding: 2.5ch 2.5ch; max-width: 65ch; position: relative; margin: auto; position: relative; z-index: 10; border: 0; overflow: clip;">
-            <h2><a href="https://www.dictionary.com/browse/group#american-group-noun">Group</a></h2><sup>/ɡro͞op/</sup>
+        <div class="" style="background: white; border-radius: 10px; overflow: clip;">
+          <blockquote style="
+                padding: 2.5ch 2.5ch;
+                max-width: 65ch;
+                position: relative;
+                margin: auto;
+                position: relative;
+                z-index: 10;
+                border: 0;
+                overflow: clip;
+              ">
+            <h2>
+              <a href="https://www.dictionary.com/browse/group#american-group-noun">Group</a>
+            </h2>
+            <sup>/ɡro͞op/</sup>
             <p>
               <b>noun</b>
+            </p>
+
             <p>noun: <b>group</b>; plural noun: <b>groups</b></p>
-            <p>a number of people or things that are located close together or are considered or classed together.</p>
-            <p><small>&quot;these bodies fall into four distinct groups&quot;</small></p>
-            <p><i><b>Similar:</b></i></p>
-            <p><span style="text-decoration: none;"><b><a
-                    href="https://www.thesaurus.com/browse/group">category,</a></b>
-                <a href="https://www.thesaurus.com/browse/group">class</a>, <a
-                  href="https://www.thesaurus.com/browse/group">classification</a>, <a
-                  href="https://www.thesaurus.com/browse/group">grouping</a>, <a
-                  href="https://www.thesaurus.com/browse/group">set</a>, <a
-                  href="https://www.thesaurus.com/browse/group">lot</a>, <a
-                  href="https://www.thesaurus.com/browse/group">batch</a>, <a
-                  href="https://www.thesaurus.com/browse/group">bracket</a>, <a
-                  href="https://www.thesaurus.com/browse/group">type</a>, <a
-                  href="https://www.thesaurus.com/browse/group">sort</a>, <a
-                  href="https://www.thesaurus.com/browse/group">kind</a>, <a
-                  href="https://www.thesaurus.com/browse/group">variety</a>, <a
-                  href="https://www.thesaurus.com/browse/group">family</a>, <a
-                  href="https://www.thesaurus.com/browse/group">species</a>, <a
-                  href="https://www.thesaurus.com/browse/group">genus</a>, <a
-                  href="https://www.thesaurus.com/browse/group">breed</a>, <a
-                  href="https://www.thesaurus.com/browse/group">style</a>, <a
-                  href="https://www.thesaurus.com/browse/group">grade</a>, <a
-                  href="https://www.thesaurus.com/browse/group">grading</a>, <a
-                  href="https://www.thesaurus.com/browse/group">rank</a>, <a
-                  href="https://www.thesaurus.com/browse/group">status</a>, <a
-                  href="https://www.thesaurus.com/browse/group">crowd</a>, <a
-                  href="https://www.thesaurus.com/browse/group">band</a>, <a
-                  href="https://www.thesaurus.com/browse/group">company</a>, <a
-                  href="https://www.thesaurus.com/browse/group">party</a>, <a
-                  href="https://www.thesaurus.com/browse/group">body</a>, <a
-                  href="https://www.thesaurus.com/browse/group">gathering</a>, <a
-                  href="https://www.thesaurus.com/browse/group">congregation</a>, <a
-                  href="https://www.thesaurus.com/browse/group">assembly</a>, <a
-                  href="https://www.thesaurus.com/browse/group">collection</a>, <a
-                  href="https://www.thesaurus.com/browse/group">cluster</a>, <a
-                  href="https://www.thesaurus.com/browse/group">flock</a>, <a
-                  href="https://www.thesaurus.com/browse/group">pack</a>, <a
-                  href="https://www.thesaurus.com/browse/group">troop</a>, <a
-                  href="https://www.thesaurus.com/browse/group">gang</a>, <a
-                  href="https://www.thesaurus.com/browse/group">bunch</a></span></p>
+            <p>
+              a number of people or things that are located close together or
+              are considered or classed together.
+            </p>
+            <p>
+              <small>&quot;these bodies fall into four distinct
+                groups&quot;</small>
+            </p>
+            <p>
+              <i><b>Similar:</b></i>
+            </p>
+            <p>
+              <span style="text-decoration: none"><b><a href="https://www.thesaurus.com/browse/group">category,</a></b>
+                <a href="https://www.thesaurus.com/browse/group">class</a>,
+                <a href="https://www.thesaurus.com/browse/group">classification</a>,
+                <a href="https://www.thesaurus.com/browse/group">grouping</a>,
+                <a href="https://www.thesaurus.com/browse/group">set</a>,
+                <a href="https://www.thesaurus.com/browse/group">lot</a>,
+                <a href="https://www.thesaurus.com/browse/group">batch</a>,
+                <a href="https://www.thesaurus.com/browse/group">bracket</a>,
+                <a href="https://www.thesaurus.com/browse/group">type</a>,
+                <a href="https://www.thesaurus.com/browse/group">sort</a>,
+                <a href="https://www.thesaurus.com/browse/group">kind</a>,
+                <a href="https://www.thesaurus.com/browse/group">variety</a>,
+                <a href="https://www.thesaurus.com/browse/group">family</a>,
+                <a href="https://www.thesaurus.com/browse/group">species</a>,
+                <a href="https://www.thesaurus.com/browse/group">genus</a>,
+                <a href="https://www.thesaurus.com/browse/group">breed</a>,
+                <a href="https://www.thesaurus.com/browse/group">style</a>,
+                <a href="https://www.thesaurus.com/browse/group">grade</a>,
+                <a href="https://www.thesaurus.com/browse/group">grading</a>,
+                <a href="https://www.thesaurus.com/browse/group">rank</a>,
+                <a href="https://www.thesaurus.com/browse/group">status</a>,
+                <a href="https://www.thesaurus.com/browse/group">crowd</a>,
+                <a href="https://www.thesaurus.com/browse/group">band</a>,
+                <a href="https://www.thesaurus.com/browse/group">company</a>,
+                <a href="https://www.thesaurus.com/browse/group">party</a>,
+                <a href="https://www.thesaurus.com/browse/group">body</a>,
+                <a href="https://www.thesaurus.com/browse/group">gathering</a>,
+                <a href="https://www.thesaurus.com/browse/group">congregation</a>,
+                <a href="https://www.thesaurus.com/browse/group">assembly</a>,
+                <a href="https://www.thesaurus.com/browse/group">collection</a>,
+                <a href="https://www.thesaurus.com/browse/group">cluster</a>,
+                <a href="https://www.thesaurus.com/browse/group">flock</a>,
+                <a href="https://www.thesaurus.com/browse/group">pack</a>,
+                <a href="https://www.thesaurus.com/browse/group">troop</a>,
+                <a href="https://www.thesaurus.com/browse/group">gang</a>,
+                <a href="https://www.thesaurus.com/browse/group">bunch</a></span>
             </p>
           </blockquote>
-
         </div>
-
-
       </div>
-    </div>
-    <br />
-    <hr />
-    <br />
-    <div class="container" style="display: grid; gap: 25px; grid-template-columns: 1fr 1fr;">
-      <div class="column">
-
-        <p>The letter <i>&quot;<b>G</b>&quot;</i> stands for <i>&quot;<b>G</b>roup&quot;</i>. It applies to things like
-          a
-          &quot;group&quot; of tabs, a list of files, a &quot;directory&quot;, a &quot;folder&quot;, a
-          &quot;table&quot;,
-          a
-          <i>&quot;<b>G</b>rid&quot;</i> (if you will...) a spreadsheet, etc. It's essentially a list of things that
-          have
-          some
-          common trait.
-        </p>
-        <p>You will often see the key <kbd>CTRL</kbd> associated with <em><strong>G</strong>roups</em>.</p>
-        <br />
-        <h2 id="ie">ie.</h2>
-        <div class="" style="display: grid; gap: 25px; grid-template-columns: 1.25fr 2fr;">
-          <div style="position: relative; display: flex; justify-content: center; align-items: center;">
-            <p>
-              <kbd
-                style="display: flex; align-items: baseline; max-width: max-content; padding: 20px; padding-top: 10px; padding-bottom: 10px; border-radius: 10px; line-height: 0; white-space: nowrap; float: left; border: 4px solid black;">cmd
-                + <span style="margin: 8px; font-size: 1.25rem; line-height: 0;"><b>ctrl</b></span> + o</kbd>
+      <br />
+      <hr />
+      <br />
+      <div class="container" style="display: grid; gap: 25px; grid-template-columns: 1fr 1fr">
+        <div class="column">
+          <p>
+            The letter <i>&quot;<b>G</b>&quot;</i> stands for
+            <i>&quot;<b>G</b>roup&quot;</i>. It applies to things like a
+            &quot;group&quot; of tabs, a list of files, a
+            &quot;directory&quot;, a &quot;folder&quot;, a &quot;table&quot;,
+            a <i>&quot;<b>G</b>rid&quot;</i> (if you will...) a spreadsheet,
+            etc. It's essentially a list of things that have some common
+            trait.
+          </p>
+          <p>
+            You will often see the key <kbd>CTRL</kbd> associated with
+            <em><strong>G</strong>roups</em>.
+          </p>
+          <br />
+          <h2 id="ie">ie.</h2>
+          <div class="" style="
+                display: grid;
+                gap: 25px;
+                grid-template-columns: 1.25fr 2fr;
+              ">
+            <div style="
+                  position: relative;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                ">
+              <p>
+                <kbd style="
+                      display: flex;
+                      align-items: baseline;
+                      max-width: max-content;
+                      padding: 20px;
+                      padding-top: 10px;
+                      padding-bottom: 10px;
+                      border-radius: 10px;
+                      line-height: 0;
+                      white-space: nowrap;
+                      float: left;
+                      border: 4px solid black;
+                    ">cmd +
+                  <span style="margin: 8px; font-size: 1.25rem; line-height: 0"><b>ctrl</b></span>
+                  + o</kbd>
+              </p>
+            </div>
+            <div>
+              <h4>Move a <b>Group of Editors</b> into a new window.</h4>
+              <div style="word-break: break-all; hyphens: auto">
+                Since the Group is moved using <code>CTRL</code>
+                <i>(fast)</i>
+                or <code>G</code> <b>(slow)</b>, the Individual is moved using
+                <code>ALT</code> <i>(fast)</i> or
+                <code>I</code>
+                <b>(slow)</b>.
+              </div>
+            </div>
+            <div style="
+                  position: relative;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                ">
+              <p>
+                <kbd style="
+                      display: flex;
+                      align-items: baseline;
+                      max-width: max-content;
+                      padding: 20px;
+                      padding-top: 10px;
+                      padding-bottom: 10px;
+                      border-radius: 10px;
+                      line-height: 0;
+                      float: left;
+                      border: 4px solid black;
+                    ">cmd +
+                  <span style="margin: 8px; font-size: 1.25rem; line-height: 0"><b>alt</b></span>
+                  + o</kbd>
+              </p>
+            </div>
+            <div>
+              <h4>Move an <b>Individual Editor</b> into a new window.</h4>
+              <div style="word-break: break-all; hyphens: auto">
+                Since the Individual is moved using <code>ALT</code>
+                <i>(fast)</i> or <code>I</code> <b>(slow)</b>, the Group is
+                moved using <code>CTRL</code> <i>(fast)</i>
+                or
+                <code>G</code> <b>(slow)</b>.
+              </div>
+            </div>
+          </div>
+          <br />
+          <hr />
+          <br />
+          <h2 id="shortcuts-taxonomy">Shortcuts: Taxonomy</h2>
+          <strong>Groups</strong>
+          <br />
+          <sup>Groups of Panels</sup>
+          <legend style="
+                display: block;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+              ">
+            <p style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                ">
+              <kbd class="space-mono" style="
+                    color: #bb00bb;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    border-radius: 10px;
+                    border: 2px solid #666666;
+                    display: inline-block;
+                    padding: 10px 10px;
+                    background: #eeeeee;
+                    overflow: clip;
+                    position: relative;
+                  ">⌘ + ctrl +
+                <span class="codicon codicon-triangle-up"></span></kbd><br /><b style="margin-top: -4px">Move Group
+                Up</b>
             </p>
-          </div>
-          <div>
-            <h4>Move a <b>Group of Editors</b> into a new window.</h4>
-            <div style="word-break: break-all; hyphens: auto;">Since the Group is moved using <code>CTRL</code>
-              <i>(fast)</i>
-              or <code>G</code> <b>(slow)</b>, the Individual is moved using <code>ALT</code> <i>(fast)</i> or
-              <code>I</code>
-              <b>(slow)</b>.
-            </div>
-          </div>
-          <div style="position: relative; display: flex; justify-content: center; align-items: center;">
-            <p><kbd
-                style="display: flex; align-items: baseline; max-width: max-content; padding: 20px; padding-top: 10px; padding-bottom: 10px; border-radius: 10px; line-height: 0; float: left; border: 4px solid black;">cmd
-                + <span style="margin: 8px; font-size: 1.25rem; line-height: 0;"><b>alt</b></span> + o</kbd></p>
-          </div>
-          <div>
-            <h4>Move an <b>Individual Editor</b> into a new window.</h4>
-            <div style="word-break: break-all; hyphens: auto;">Since the Individual is moved using <code>ALT</code>
-              <i>(fast)</i> or <code>I</code> <b>(slow)</b>, the Group is moved using <code>CTRL</code> <i>(fast)</i> or
-              <code>G</code> <b>(slow)</b>.
-            </div>
-          </div>
-        </div>
-        <br />
-        <hr />
-        <br />
-        <h2 id="shortcuts-taxonomy">Shortcuts: Taxonomy</h2>
-        <strong>Groups</strong>
-        <br />
-        <sup>Groups of Panels</sup>
-        </p>
-        <legend style="display: block; display: grid; grid-template-columns:1fr 1fr;">
+            <p style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                ">
+              <kbd class="space-mono" style="
+                    color: #bb00bb;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    border-radius: 10px;
+                    border: 2px solid #666666;
+                    display: inline-block;
+                    padding: 10px 10px;
+                    background: #eeeeee;
+                    overflow: clip;
+                    position: relative;
+                  ">⌘ + ctrl +
+                <span class="codicon codicon-triangle-right"></span></kbd><br /><b style="margin-top: -4px">Move Group
+                Right</b>
+            </p>
+            <p style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                ">
+              <kbd class="space-mono" style="
+                    color: #bb00bb;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    border-radius: 10px;
+                    border: 2px solid #666666;
+                    display: inline-block;
+                    padding: 10px 10px;
+                    background: #eeeeee;
+                    overflow: clip;
+                    position: relative;
+                  ">⌘ + ctrl +
+                <span class="codicon codicon-triangle-down"></span></kbd><br /><b style="margin-top: -4px">Move Group
+                Down</b>
+            </p>
+            <p style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                ">
+              <kbd class="space-mono" style="
+                    color: #bb00bb;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    border-radius: 10px;
+                    border: 2px solid #666666;
+                    display: inline-block;
+                    padding: 10px 10px;
+                    background: #eeeeee;
+                    overflow: clip;
+                    position: relative;
+                  ">⌘ + ctrl +
+                <span class="codicon codicon-triangle-left"></span></kbd><br /><b style="margin-top: -4px">Move Group
+                Left</b>
+            </p>
+          </legend>
 
-          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
-              class="space-mono"
-              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
-              +
-              ctrl + <span class="codicon codicon-triangle-up"></span></kbd><br /><b style="margin-top: -4px;">Move
-              Group Up</b></p>
-          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
-              class="space-mono"
-              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
-              +
-              ctrl + <span class="codicon codicon-triangle-right"></span></kbd><br /><b style="margin-top: -4px;">Move
-              Group Right</b>
-          </p>
-          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
-              class="space-mono"
-              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
-              +
-              ctrl + <span class="codicon codicon-triangle-down"></span></kbd><br /><b style="margin-top: -4px;">Move
-              Group Down</b></p>
-          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
-              class="space-mono"
-              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
-              +
-              ctrl + <span class="codicon codicon-triangle-left"></span></kbd><br /><b style="margin-top: -4px;">Move
-              Group Left</b></p>
-        </legend>
-
-        <script src="./out/stripe-gradient.js"></script>
-        <script>
-          (function () {
+          <script src="./out/stripe-gradient.js">
             'use strict';
+            (function () {
+              (function waitForElm(selector) {
+                return new Promise((resolve) => {
+                  if (document.querySelector(selector)) {
+                    return resolve(document.querySelector(selector));
+                  }
 
-            new Gradient({
-              canvas: 'canvas#demo',
-              colors: ['#a960ee', '#ff333d', '#90e0ff', '#ffcb57']
-            });
+                  const observer = new MutationObserver((mutations) => {
+                    if (document.querySelector(selector)) {
+                      resolve(document.querySelector(selector));
+                      observer.disconnect();
+                    }
+                  });
 
-          })();
-        </script>
-      </div>
-      <div class="column">
-        <p><strong>Panels</strong>
-          <br /><sup>Individual Panes</sup>
-        </p>
-        <legend style="display: block; display: grid; grid-template-columns:1fr 1fr;">
+                  observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                  });
+                });
+              })("#_builder-form > div.thank-you-message").then((notAPromise) => {
 
-          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
-              class="space-mono"
-              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
-              +
-              alt + <span class="codicon codicon-triangle-up"></span></kbd><br /><b style="margin-top: -4px;">Move
-              Panel Up</b></p>
-          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
-              class="space-mono"
-              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
-              +
-              alt + <span class="codicon codicon-triangle-right"></span></kbd><br /><b style="margin-top: -4px;">Move
-              Panel Right</b>
-          </p>
-          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
-              class="space-mono"
-              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
-              +
-              alt + <span class="codicon codicon-triangle-down"></span></kbd><br /><b style="margin-top: -4px;">Move
-              Panel Down</b></p>
-          <p style="display: flex; justify-content: center; align-items: center; flex-direction: column;"><kbd
-              class="space-mono"
-              style="color: #BB00BB; font-weight: 600; font-size: 1rem; border-radius: 10px; border: 2px solid #666666; display: inline-block; padding: 10px 10px; background: #eeeeee; overflow: clip; position: relative">⌘
-              +
-              alt + <span class="codicon codicon-triangle-left"></span></kbd><br /><b style="margin-top: -4px;">Move
-              Panel Left</b></p>
-        </legend>
-        <p><kbd>⌘ + 0</kbd> — Layout</p>
-        <ul>
-          <li><kbd>⌘ + 1</kbd> — Primary Sidebar
-            <ul>
-              <li><kbd>⌘ + ❰</kbd></li>
-            </ul>
-          </li>
-          <li><kbd>⌘ + 2</kbd> — Focus Editor/Toggle Panel</li>
-          <li><kbd>⌘ + 3</kbd> — Search</li>
-          <li><kbd>⌘ + 5</kbd> — Accessibility</li>
-          <li><kbd>⌘ + ]</kbd> / <kbd>⌘ + [</kbd> — Add/Remove Integrated Terminal</li>
-          <li><kbd>⌘ + K</kbd> — Previews</li>
-          <li><kbd>⌘ + N</kbd> — NPM</li>
-          <li><kbd>⌘ + T</kbd> D — Takku (Difftool) / Terminal</li>
-          <li><kbd>⌘ + L</kbd> — Lookup (Symbol)</li>
-        </ul>
-        <div><kbd>ctrl</kbd> is usually reserved for Grids</div>
-        <div><kbd>alt</kbd> is usually reserved for Individual Panes</div>
+              });
 
-        <div class="mermaid" style="display: flex; justify-content: center; margin: 20px">
-          erDiagram
-          CUSTOMER {
-          string id PK
-          string name
-          string email
-          string phone
-          }
-          ORDER {
-          string id PK
-          string orderDate
-          string status
-          }
-          PRODUCT {
-          string id PK
-          string name
-          float price
-          }
-          ORDER_PRODUCT {
-          string orderId FK
-          string productId FK
-          int quantity
-          }
-          CUSTOMER ||--o{ ORDER : places
-          ORDER ||--o{ ORDER_PRODUCT : contains
-          PRODUCT ||--o{ ORDER_PRODUCT : listed_in
+              console.log("gradient...");
+              new Gradient({
+                canvas: 'canvas#demo',
+                colors: ['#a960ee', '#ff333d', '#90e0ff', '#ffcb57']
+              });
+            })();
+          </script>
         </div>
+        <div class="column">
+          <p><strong>Panels</strong> <br /><sup>Individual Panes</sup></p>
+          <legend style="
+                display: block;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+              ">
+            <p style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                ">
+              <kbd class="space-mono" style="
+                    color: #bb00bb;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    border-radius: 10px;
+                    border: 2px solid #666666;
+                    display: inline-block;
+                    padding: 10px 10px;
+                    background: #eeeeee;
+                    overflow: clip;
+                    position: relative;
+                  ">⌘ + alt +
+                <span class="codicon codicon-triangle-up"></span></kbd><br /><b style="margin-top: -4px">Move Panel
+                Up</b>
+            </p>
+            <p style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                ">
+              <kbd class="space-mono" style="
+                    color: #bb00bb;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    border-radius: 10px;
+                    border: 2px solid #666666;
+                    display: inline-block;
+                    padding: 10px 10px;
+                    background: #eeeeee;
+                    overflow: clip;
+                    position: relative;
+                  ">⌘ + alt +
+                <span class="codicon codicon-triangle-right"></span></kbd><br /><b style="margin-top: -4px">Move Panel
+                Right</b>
+            </p>
+            <p style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                ">
+              <kbd class="space-mono" style="
+                    color: #bb00bb;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    border-radius: 10px;
+                    border: 2px solid #666666;
+                    display: inline-block;
+                    padding: 10px 10px;
+                    background: #eeeeee;
+                    overflow: clip;
+                    position: relative;
+                  ">⌘ + alt +
+                <span class="codicon codicon-triangle-down"></span></kbd><br /><b style="margin-top: -4px">Move Panel
+                Down</b>
+            </p>
+            <p style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                ">
+              <kbd class="space-mono" style="
+                    color: #bb00bb;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    border-radius: 10px;
+                    border: 2px solid #666666;
+                    display: inline-block;
+                    padding: 10px 10px;
+                    background: #eeeeee;
+                    overflow: clip;
+                    position: relative;
+                  ">⌘ + alt +
+                <span class="codicon codicon-triangle-left"></span></kbd><br /><b style="margin-top: -4px">Move Panel
+                Left</b>
+            </p>
+          </legend>
+          <p><kbd>⌘ + 0</kbd> — Layout</p>
+          <ul>
+            <li>
+              <kbd>⌘ + 1</kbd> — Primary Sidebar
+              <ul>
+                <li><kbd>⌘ + ❰</kbd></li>
+              </ul>
+            </li>
+            <li><kbd>⌘ + 2</kbd> — Focus Editor/Toggle Panel</li>
+            <li><kbd>⌘ + 3</kbd> — Search</li>
+            <li><kbd>⌘ + 5</kbd> — Accessibility</li>
+            <li>
+              <kbd>⌘ + ]</kbd> / <kbd>⌘ + [</kbd> — Add/Remove Integrated
+              Terminal
+            </li>
+            <li><kbd>⌘ + K</kbd> — Previews</li>
+            <li><kbd>⌘ + N</kbd> — NPM</li>
+            <li><kbd>⌘ + T</kbd> D — Takku (Difftool) / Terminal</li>
+            <li><kbd>⌘ + L</kbd> — Lookup (Symbol)</li>
+          </ul>
+          <div><kbd>ctrl</kbd> is usually reserved for Grids</div>
+          <div><kbd>alt</kbd> is usually reserved for Individual Panes</div>
 
+          <div class="mermaid" style="display: flex; justify-content: center; margin: 20px">
+            datasource db {
+            provider = "mongodb"
+            url = env("DATABASE_URL")
+            }
+
+            generator client {
+            provider = "prisma-client-js"
+            binaryTargets = ["native", "rhel-openssl-1.0.x", "linux-arm64-openssl-1.0.x"]
+            }
+
+            model Account {
+            id String @id @default(auto()) @map("_id") @db.ObjectId
+            userId String @db.ObjectId
+            type String
+            provider String
+            providerAccountId String
+            refresh_token String?
+            access_token String?
+            expires_at Int?
+            token_type String?
+            scope String?
+            id_token String?
+            session_state String?
+
+            // Start of HighLevel -specific Account properties
+            userType USER_TYPE?
+            locationId String?
+            companyId String?
+            // End of HighLevel -specific Account properties
+
+            user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+            @@unique([provider, providerAccountId])
+            }
+
+            model Session {
+            id String @id @default(auto()) @map("_id") @db.ObjectId
+            sessionToken String @unique
+            userId String @db.ObjectId
+            expires DateTime
+            user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+            }
+
+            model User {
+            id String @id @default(auto()) @map("_id") @db.ObjectId
+            name String?
+            email String? @unique
+            emailVerified DateTime?
+            image String?
+            plan PRICING_PLAN @default(FREE)
+            // Start of Psuedo HighLevel Properties
+            companyId String? @db.ObjectId
+            company Company? @relation(fields: [companyId], references: [id])
+            admin Boolean @default(false)
+            // End of Psuedo HighLevel Properties
+            phone String?
+            legalBusinessName String?
+            firstName String?
+            lastName String?
+
+            // Start of HighLevel -specific Account properties
+            hasHighLevel Boolean @default(false)
+            highLevelUserId String?
+            highLevelCompanyId String?
+            highLevelLocationId String?
+            highLevelCompanyType USER_TYPE?
+            // permissions Json?
+            // roles Json?
+            accounts Account[]
+            sessions Session[]
+            projects Project[]
+            }
+
+            model Location {
+            id String @id @default(auto()) @map("_id") @db.ObjectId
+            highLevelLocationId String @unique @default("") @map("locationId")
+            name String
+            address String
+            city String
+            state String
+            country String?
+            website String?
+            timezone String
+            dateAdded String
+            highLevelCompanyId String @unique @default("STsoOZWCeRcFajyk6gL4")
+            company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+            companyId String @db.ObjectId
+            }
+
+            // This is important that you set this up when the user signs up
+            model Company {
+            id String @id @default(auto()) @map("_id") @db.ObjectId
+            liveMode Boolean @default(false)
+            highLevelCompanyId String @default("") @map("companyId")
+            createdAt DateTime @default(now())
+            accountHolderEmail String
+            taxId String?
+            locations Location[]
+            defaultLocationId String? @db.ObjectId
+            // image String? // Keep this out. Just get it from the API.
+            // legalBusinessName String? // Keep this out. Just get it from the API.
+            // useMultipleLocations Boolean? @default(false)
+            // defaultServiceType String?
+            // gptEnabled Boolean? @default(false)
+            // npis String[]
+            // users User[]
+            // Account Account[]
+            users User[]
+            }
+
+            model VerificationToken {
+            identifier String @id @default(cuid()) @map("_id")
+            token String @unique
+            expires DateTime
+
+            @@unique([identifier, token])
+            }
+
+            model Project {
+            id String @id @default(auto()) @map("_id") @db.ObjectId
+            name String
+            mondayBoardUrl String
+            githubRepoUrl String
+            serviceAgreementUrl String
+            user User @relation(fields: [userId], references: [id])
+            userId String @db.ObjectId
+            }
+
+            enum PRICING_PLAN {
+            FREE
+            BASIC
+            PLUS
+            PREMIUM
+            }
+
+            enum USER_TYPE {
+            Company
+            Location
+            }
+
+          </div>
+          <ul role="listbox" aria-labelledby="downshift-0-label" tabindex="-1"
+            class="ahr q aqq aqr aqs aqt jj xq yw aqu aqv aqw hu aqx aqy v cg i" id="downshift-0-menu">
+            <li role="option" aria-selected="false" class="asz bc kc kd yj yk wr" id="downshift-0-item-0">
+              <div class="x hr">HTTP</div>
+            </li>
+            <li role="option" aria-selected="false" class="asi bc kc kd yj yk jb" id="downshift-0-item-1">
+              <div class="x hr">HTTPS</div>
+            </li>
+            <li role="option" aria-selected="false" class="asz bc kc kd yj yk wr" id="downshift-0-item-2">
+              <div class="x hr">UNIX</div>
+            </li>
+            <li role="option" aria-selected="false" class="asz bc kc kd yj yk wr" id="downshift-0-item-3">
+              <div class="x hr">TCP</div>
+            </li>
+            <li role="option" aria-selected="false" class="asz bc kc kd yj yk wr" id="downshift-0-item-4">
+              <div class="x hr">SSH</div>
+            </li>
+            <li role="option" aria-selected="false" class="asz bc kc kd yj yk wr" id="downshift-0-item-5">
+              <div class="x hr">RDP</div>
+            </li>
+            <li role="option" aria-selected="false" class="asz bc kc kd yj yk wr" id="downshift-0-item-6">
+              <div class="x hr">UNIX+TLS</div>
+            </li>
+            <li role="option" aria-selected="false" class="asz bc kc kd yj yk wr" id="downshift-0-item-7">
+              <div class="x hr">SMB</div>
+            </li>
+            <li role="option" aria-selected="false" class="asz bc kc kd yj yk wr" id="downshift-0-item-8">
+              <div class="x hr">HTTP_STATUS</div>
+            </li>
+            <li role="option" aria-selected="false" class="asz bc kc kd yj yk wr" id="downshift-0-item-9">
+              <div class="x hr">BASTION</div>
+            </li>
+          </ul>
+          <pre>
+
+          ............./´¯/)
+          ............/....//
+          .........../....//
+          ...../´¯/..../´¯\ -- HELLO, --
+          .././.../..../..../.| -- WORLD! --
+          (.(....(....(..../.)..)
+          .\................\/.../
+          ..\................. /
+          ....\..............(
+
+        </pre>
+        </div>
       </div>
     </div>
   </div>
